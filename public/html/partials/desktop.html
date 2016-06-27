@@ -1,0 +1,10 @@
+<section>
+    <ul>
+        <div class="pull-left">
+            <li class="file-set text-center" id="file{{file.id}}" ng-repeat="file in dCtrl.files" ng-click="dCtrl.startFocusEvent($event)" >
+                <img class="folder-img" src="../../../images/folder.png" id="file{{file.id}}" ng-click="dCtrl.giveFocus($event)"/><p id="file{{file.id}}" ng-click="dCtrl.giveFocus($event)">{{file.name}}</p>
+            </li>
+        </div>
+        
+    </ul>
+</section>

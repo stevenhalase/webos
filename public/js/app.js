@@ -8,11 +8,12 @@
 
     function webOSRouter($stateProvider, $urlRouterProvider) {
         $stateProvider
-            .state('home', {
+            .state('desktop', {
                 url         : '/',
-                templateUrl : 'partials/home.html',
-                controller  : 'homeCtrl as hCtrl'
+                templateUrl : '../html/partials/desktop.html',
+                controller  : 'desktopCtrl as dCtrl'
             })
+            $urlRouterProvider.otherwise('/')
     }
 
 }());

@@ -7,14 +7,89 @@
         <script src="../js/www/lib/angular-ui-router/release/angular-ui-router.js"></script>
         <script src="../js/www/lib/jquery/dist/jquery.min.js"></script>
         <script src="../js/www/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-        <link rel="" type="stylesheet" href="../js/www/lib/bootstrap/dist/css/bootstrap.min.css">
+        <script src="../js/www/lib/remodal/dist/remodal.min.js"></script>
+        <link rel="stylesheet" href="../js/www/lib/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../js/www/lib/remodal/dist/remodal.css">
+        <link rel="stylesheet" href="../js/www/lib/remodal/dist/remodal-default-theme.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
         <link href="./css/app.css" rel="stylesheet">
+        <link href="./css/desktop.css" rel="stylesheet">
     </head>
     <body ng-controller="homeCtrl as hCtrl">
 
-        <h1>{{hCtrl.title}}</h1>
+        
+        <nav id="nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="dropdown navbar-brand">
+                    <img class="dropdown-toggle" data-toggle="dropdown" src="../images/logo.svg" id="logo">
+                    <ul class="dropdown-menu os-dropdown">
+                        <li><a href="#">About WebOS</a></li>
+                        <li><a href="#">Preferences</a></li>
+                        <li><a href="#">Account</a></li>
+                        <li><a href="#">Sign Out</a></li>
+                    </ul>
+                </div>
+            <ul class="nav navbar-nav">
+                <li>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">File</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">New Folder</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">GO</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">New GO Window</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" ng-bind=" hCtrl.currentTime || 'Sun 1:01 AM' "></a>
+                        <ul class="dropdown-menu">
+                            <li class="disabled full-time"><a href="#" ng-bind="hCtrl.fullDate || 'Sunday June 27, 2016' "></a></li>
+                            <li>
+                                <a href="#" ng-click="hCtrl.changeTimeFrame('12hr'); hCtrl.is12hr = true">
+                                <i id="nav-search" class="material-icons" ng-if="hCtrl.is12hr">done</i>12 Hour
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" ng-click="hCtrl.changeTimeFrame('24hr'); hCtrl.is12hr = false">
+                                <i id="nav-search" class="material-icons" ng-if="!hCtrl.is12hr">done</i>24 Hour
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    
+                </li>
+                <li>
+                    <a data-remodal-target="modal"><i id="nav-search" class="material-icons">search</i></a>
+                </li>
+            </ul>
+        </nav>
+
+        <section class="desktop-wrapper">
+            <ui-view></ui-view>
+        </section>
+
+        <!-- Search modal -->
+        <div id="search-container" class="remodal-bg">
+            <div class="remodal" data-remodal-id="modal">
+                <input type="text" class="form-control" value="" placeholder="WebOS Search">
+            </div>
+        </div>
     
     <script src="../js/app.js"></script>
     <script src="../js/controllers/home-controller.js"></script>
+    <script src="../js/controllers/login-controller.js"></script>
+    <script src="../js/controllers/desktop-controller.js"></script>
     </body>
 </html>

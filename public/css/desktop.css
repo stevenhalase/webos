@@ -1,0 +1,14 @@
+.folder-img {
+    width: 50px;
+}
+
+.file-set {
+    color: white;
+    font-size: bold;
+    list-style: none;
+}
+
+.focused {
+    border: 2px solid #3498db;
+    opacity: 0.8;
+}
