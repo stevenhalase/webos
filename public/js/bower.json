@@ -1,0 +1,20 @@
+{
+  "name": "webos",
+  "authors": [
+    "Steven Halase <steven.halase@gmail.com>"
+  ],
+  "description": "An OS on the go.",
+  "main": "home.html",
+  "keywords": [
+    "os",
+    "web",
+    "agnostic"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+    "angular-ui-router": "^0.3.1",
+    "angular": "^1.5.7",
+    "bootstrap": "^3.3.6"
+  }
+}
