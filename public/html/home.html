@@ -8,25 +8,27 @@
         <script src="../js/www/lib/jquery/dist/jquery.min.js"></script>
         <script src="../js/www/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="../js/www/lib/remodal/dist/remodal.min.js"></script>
+        <script src="../js/www/lib/typeit.min.js"></script>
         <link rel="stylesheet" href="../js/www/lib/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="../js/www/lib/remodal/dist/remodal.css">
         <link rel="stylesheet" href="../js/www/lib/remodal/dist/remodal-default-theme.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+        <link href='./css/material-icon.css' rel='stylesheet' type='text/css'>
+        <link href='./css/google-open-sans.css' rel='stylesheet' type='text/css'>
         <link href="./css/app.css" rel="stylesheet">
         <link href="./css/desktop.css" rel="stylesheet">
+        <link href="./css/splash.css" rel="stylesheet">
+        <link href="./css/login.css" rel="stylesheet">
     </head>
     <body ng-controller="homeCtrl as hCtrl">
-
         
         <nav id="nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="dropdown navbar-brand">
                     <img class="dropdown-toggle" data-toggle="dropdown" src="../images/logo.svg" id="logo">
                     <ul class="dropdown-menu os-dropdown">
-                        <li><a href="#">About WebOS</a></li>
-                        <li><a href="#">Preferences</a></li>
-                        <li><a href="#">Account</a></li>
-                        <li><a href="#">Sign Out</a></li>
+                        <li><a data-remodal-target="about-webos-modal">About WebOS</a></li>
+                        <li><a >Preferences</a></li>
+                        <li><a >Account</a></li>
+                        <li><a >Sign Out</a></li>
                     </ul>
                 </div>
             <ul class="nav navbar-nav">
@@ -34,7 +36,7 @@
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">File</a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">New Folder</a></li>
+                            <li><a >New Folder</a></li>
                         </ul>
                     </div>
                 </li>
@@ -42,7 +44,7 @@
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">GO</a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">New GO Window</a></li>
+                            <li><a >New GO Window</a></li>
                         </ul>
                     </div>
                 </li>
@@ -53,14 +55,14 @@
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" ng-bind=" hCtrl.currentTime || 'Sun 1:01 AM' "></a>
                         <ul class="dropdown-menu">
-                            <li class="disabled full-time"><a href="#" ng-bind="hCtrl.fullDate || 'Sunday June 27, 2016' "></a></li>
+                            <li class="disabled full-time"><a  ng-bind="hCtrl.fullDate || 'Sunday June 27, 2016' "></a></li>
                             <li>
-                                <a href="#" ng-click="hCtrl.changeTimeFrame('12hr'); hCtrl.is12hr = true">
+                                <a  ng-click="hCtrl.changeTimeFrame('12hr'); hCtrl.is12hr = true">
                                 <i id="nav-search" class="material-icons" ng-if="hCtrl.is12hr">done</i>12 Hour
                                 </a>
                             </li>
                             <li>
-                                <a href="#" ng-click="hCtrl.changeTimeFrame('24hr'); hCtrl.is12hr = false">
+                                <a  ng-click="hCtrl.changeTimeFrame('24hr'); hCtrl.is12hr = false">
                                 <i id="nav-search" class="material-icons" ng-if="!hCtrl.is12hr">done</i>24 Hour
                                 </a>
                             </li>
@@ -71,7 +73,7 @@
                     
                 </li>
                 <li>
-                    <a data-remodal-target="modal"><i id="nav-search" class="material-icons">search</i></a>
+                    <a ng-click="hCtrl.openSearchModal()"><i id="nav-search" class="material-icons">search</i></a>
                 </li>
             </ul>
         </nav>
@@ -82,14 +84,43 @@
 
         <!-- Search modal -->
         <div id="search-container" class="remodal-bg">
-            <div class="remodal" data-remodal-id="modal">
+            <div class="remodal" data-remodal-id="search-modal" data-remodal-options="hashTracking: false">
                 <input type="text" class="form-control" value="" placeholder="WebOS Search">
+            </div>
+        </div>
+
+        <!-- About WebOS modal -->
+        <div id="about-web-os-container" class="remodal-bg">
+            <div class="remodal" data-remodal-id="about-webos-modal" data-remodal-options="hashTracking: false">
+                <div class="system-window-header">
+                    <ul class="window-resize-list">
+                        <li><img id="resize-close" ng-click="hCtrl.resize($event)" ng-init="closeImgSrc='../images/close.svg'" ng-mouseover="closeImgSrc='../images/close-hover.svg'" ng-mouseout="closeImgSrc='../images/close.svg'" src="{{closeImgSrc}}" alt=""></li>
+                        <li><img id="resize-min" ng-click="hCtrl.resize($event)" ng-init="minImgSrc='../images/min.svg'" ng-mouseover="minImgSrc='../images/min-hover.svg'" ng-mouseout="minImgSrc='../images/min.svg'" src="{{minImgSrc}}" alt=""></li>
+                        <li><img id="resize-max" ng-click="hCtrl.resize($event)" ng-init="maxImgSrc='../images/max.svg'" ng-mouseover="maxImgSrc='../images/max-hover.svg'" ng-mouseout="maxImgSrc='../images/max.svg'" src="{{maxImgSrc}}" alt=""></li>
+                    </ul>
+                    <h1>About WebOS</h1>
+                </div>
+                <div class="system-window-body">
+                    <span class="about-webos-left">
+                        <img src="../images/logo.svg" id="about-webos-logo">
+                    </span>
+                    <span class="about-webos-right">
+                        <span id="about-webos-info">
+                            <h4>WebOS </h4>
+                            <p><b>v0.1.0</b></p>
+                            <p>Created by <b>Steven Halase</b></p>
+                        </span>
+                    </span>
+                </div>
             </div>
         </div>
     
     <script src="../js/app.js"></script>
+    <script src="../js/controllers/google-auth-factory.js"></script>
     <script src="../js/controllers/home-controller.js"></script>
     <script src="../js/controllers/login-controller.js"></script>
     <script src="../js/controllers/desktop-controller.js"></script>
+    <script src="../js/controllers/splash-controller.js"></script>
+    <script src="https://apis.google.com/js/client.js"></script>
     </body>
 </html>
